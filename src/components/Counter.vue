@@ -3,8 +3,8 @@
     <p> {{ counter }} <sup>2</sup> = {{ counter * counter }} </p>
     
     <div>
-        <button @click="getPlusValue()">+1</button> 
-        <button @click="getMinusValue()">-1</button>
+        <button @click="increase">+1</button> 
+        <button @click="decrease">-1</button>
     </div>
 
 </template>
@@ -12,22 +12,32 @@
 <script>
     export default{
 
-        props: ['title'],
+        props: {
+            title: String,
+            start: {
+                type: Number,
+                default: 100,
+                // required: true,
+                validator( value ){
+                    return value >= 0
+                }
+            }
+        },
 
         data(){
             return{
-                counter: 5
+                counter: this.start
             }
         },
         methods: {
             getSquareValue(){
                 return this.counter * this.counter
             },
-            getPlusValue(){
-                this.counter = this.counter + 1
+            increase(){
+                this.counter++
             },
-            getMinusValue(){
-                this.counter = this.counter - 1
+            decrease(){
+                this.counter--
             }
         },
         computed: { // Propiedad computada hace que nomas se repita una sola vez el proceso

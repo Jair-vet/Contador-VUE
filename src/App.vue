@@ -1,9 +1,7 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
 
-  <Counter title="Entraron"/> 
-  
-  <Counter />
+   <Counter :start="100"/>  <!--le mandamos el valor del componente -->
 
 </template>
 
