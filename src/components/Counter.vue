@@ -3,8 +3,8 @@
     <p> {{ counter }} <sup>2</sup> = {{ counter * counter }} </p>
     
     <div>
-        <button>+1</button> 
-        <button>-1</button>
+        <button v-on:click="getPlusValue()">+1</button> 
+        <button v-on:click="getMinusValue()">-1</button>
     </div>
 
 </template>
@@ -19,6 +19,12 @@
         methods: {
             getSquareValue(){
                 return this.counter * this.counter
+            },
+            getPlusValue(){
+                return this.counter = this.counter + 1
+            },
+            getMinusValue(){
+                return this.counter = this.counter - 1
             }
         },
         computed: { // Propiedad computada hace que nomas se repita una sola vez el proceso
