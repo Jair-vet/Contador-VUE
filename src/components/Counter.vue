@@ -1,16 +1,19 @@
 <template>
-    <h2>Counter</h2>
+    <h2>{{ cutomTitle }}</h2>
     <p> {{ counter }} <sup>2</sup> = {{ counter * counter }} </p>
     
     <div>
-        <button v-on:click="getPlusValue()">+1</button> 
-        <button v-on:click="getMinusValue()">-1</button>
+        <button @click="getPlusValue()">+1</button> 
+        <button @click="getMinusValue()">-1</button>
     </div>
 
 </template>
 
 <script>
     export default{
+
+        props: ['title'],
+
         data(){
             return{
                 counter: 5
@@ -21,16 +24,19 @@
                 return this.counter * this.counter
             },
             getPlusValue(){
-                return this.counter = this.counter + 1
+                this.counter = this.counter + 1
             },
             getMinusValue(){
-                return this.counter = this.counter - 1
+                this.counter = this.counter - 1
             }
         },
         computed: { // Propiedad computada hace que nomas se repita una sola vez el proceso
                         // Se maneja en Cache
             squareCounter(){
-                return this.counter * this.counter
+                return this.counter * this.counter // Siempre regresa Algo
+            },
+            cutomTitle(){
+                return this.title || 'Counter'
             }
         }
     }
