@@ -1,0 +1,76 @@
+<template>
+  <img src="https://via.placeholder.com/250" alt="bg">
+  <div class="bg-dark"></div>
+
+  <div class="indecision-container">
+
+      <input
+        v-model="question"
+        type="text"
+        placeholder="Hazme una pregunta">
+
+      <p>Recuerda terminar con un signo de interrogación </p>
+
+      <div>
+          <h2>{{ question }}</h2>
+          <h1>Si, No ... pensando</h1>
+      </div>
+
+  </div>
+</template>
+
+<script>
+export default {
+    data(){
+        return {
+            question: 'Seré millonario?'
+        }
+    }
+}
+</script>
+
+
+<style>
+    img, .bg-dark {
+        height: 70%;
+        width: 90%;
+        left: 5%;
+        position: fixed;
+        margin-top:auto;
+    }
+
+    .bg-dark {
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .indecision-container {
+        position: relative;
+        z-index: 99;
+    }
+    input {
+            width: 250px;
+            padding: 10px 30px;
+            border-radius: 5px;
+            border: none;
+            margin-top:20px;
+        }
+        input:focus {
+            outline: none;
+        }
+
+        p {
+            color: white;
+            font-size: 20px;
+            margin-top: 0px;
+        }
+
+        h1, h2 {
+            color: white;
+        }
+        
+        h2 {
+            margin-top: 150px;
+        }
+    
+
+</style>

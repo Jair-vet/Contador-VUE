@@ -12,7 +12,7 @@
 <script>
     export default{
 
-        props: {
+        props: { 
             title: String,
             start: {
                 type: Number,
