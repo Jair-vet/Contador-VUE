@@ -25,6 +25,16 @@ export default {
         return {
             question: 'Seré millonario?'
         }
+    },
+    //Esta al pendiente de algun caracter
+    watch: {
+        question( value, oldValue ){
+            
+            if( !value.incluides('?') ) return
+
+            // TODO: Realizar petición http
+
+        }
     }
 }
 </script>
