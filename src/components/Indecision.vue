@@ -1,5 +1,5 @@
 <template>
-  <img src="https://via.placeholder.com/250" alt="bg">
+  <img v-if="img" :src="img" alt="bg">
   <div class="bg-dark"></div>
 
   <div class="indecision-container">
@@ -9,11 +9,11 @@
         type="text"
         placeholder="Hazme una pregunta">
 
-      <p>Recuerda terminar con un signo de interrogación </p>
+      <p>Recuerda terminar con un signo de interrogación (?) </p>
 
       <div>
           <h2>{{ question }}</h2>
-          <h1>Si, No ... pensando</h1>
+          <h1>{{ answer }}</h1>
       </div>
 
   </div>
@@ -23,16 +23,30 @@
 export default {
     data(){
         return {
-            question: 'Seré millonario?'
+            question: null,
+            answer: null,
+            img: null
+        }
+    },
+    methods: {
+        async getAnswer(){
+
+            this.answer = 'Pensando...'
+            const { answer, image } = await fetch('https://yesno.wtf/api').then( r => r.json() )
+            
+            this.answer = answer
+            this.img = image
+
         }
     },
     //Esta al pendiente de algun caracter
     watch: {
         question( value, oldValue ){
             
-            if( !value.incluides('?') ) return
+            if( !value.includes('?') ) return
 
-            // TODO: Realizar petición http
+            //* TODO: Realizar petición http
+            this.getAnswer()
 
         }
     }
@@ -42,11 +56,13 @@ export default {
 
 <style>
     img, .bg-dark {
-        height: 70%;
-        width: 90%;
-        left: 5%;
+        height: 100vh;
+        left: 0px;
+        max-height: 100%;
+        max-width: 100%;
         position: fixed;
-        margin-top:auto;
+        top: 0px;
+        width: 100vw;
     }
 
     .bg-dark {
@@ -57,30 +73,29 @@ export default {
         position: relative;
         z-index: 99;
     }
-    input {
-            width: 250px;
-            padding: 10px 30px;
-            border-radius: 5px;
-            border: none;
-            margin-top:20px;
-        }
-        input:focus {
-            outline: none;
-        }
-
-        p {
-            color: white;
-            font-size: 20px;
-            margin-top: 0px;
-        }
-
-        h1, h2 {
-            color: white;
-        }
-        
-        h2 {
-            margin-top: 150px;
-        }
     
+    input {
+        width: 250px;
+        padding: 10px 15px;
+        border-radius: 5px;
+        border: none;
+    }
+    input:focus {
+        outline: none;
+    }
+
+    p {
+        color: white;
+        font-size: 20px;
+        margin-top: 0px;
+    }
+
+    h1, h2 {
+        color: white;
+    }
+    
+    h2 {
+        margin-top: 150px;
+    }
 
 </style>
