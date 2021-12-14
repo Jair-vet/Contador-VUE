@@ -11,9 +11,9 @@
 
       <p>Recuerda terminar con un signo de interrogación (?) </p>
 
-      <div>
+      <div v-if="isValidQuestion">
           <h2>{{ question }}</h2>
-          <h1>{{ answer }}</h1>
+          <h1>{{ answer === 'yes' ? 'Si!' : 'No!' }}</h1>
       </div>
 
   </div>
@@ -25,7 +25,9 @@ export default {
         return {
             question: null,
             answer: null,
-            img: null
+            img: null,
+            isValidQuestion: false // Bandera (Saber cuando mostrar los textos)
+
         }
     },
     methods: {
@@ -42,8 +44,12 @@ export default {
     //Esta al pendiente de algun caracter
     watch: {
         question( value, oldValue ){
+
+            this.isValidQuestion = false
             
             if( !value.includes('?') ) return
+
+            this.isValidQuestion = true
 
             //* TODO: Realizar petición http
             this.getAnswer()
