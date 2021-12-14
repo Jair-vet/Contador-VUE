@@ -9,20 +9,14 @@ describe( 'Example Component', () => {
     let value = 5;
 
     // Estímulo
-    value = value + 2
+    value = value + 6
 
 
     // Observar el resultado
-    if( value > 10 ){
-      // TODO: todo bien!
-    }else{
-       throw `${ value } no es mayor a 10`
-    }
+    expect( value ).toBeGreaterThanOrEqual( 10 )
+
 
   })
 
-
 })
-
-
 
